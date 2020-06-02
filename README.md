@@ -1,2 +1,2 @@
-# beginning 2
+# Code for SDD Game
 print("hello")
