@@ -1,0 +1,29 @@
+
+name = input("What is your name? ")
+print ("Hello," + name, "Time to play hangman!")
+
+word = "example"
+guesses = ''
+chances = 5
+
+while chances > 0:         
+    failed = 0             
+    for char in word:      
+        if char in guesses:    
+            print (char)    
+        else:
+            print ("_")
+            failed += 1
+    if failed == 0:        
+        print ("You won")  
+
+    print
+    guesses = input("guess a character:")                     
+
+    if guesses not in word:  
+        chances -= 1        
+        print ("Wrong")
+        print( "You have", + chances, 'more guesses' )
+
+        if chances == 0:           
+            print ("You Lose")
