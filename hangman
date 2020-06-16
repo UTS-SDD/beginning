@@ -19,8 +19,9 @@ while chances > 0:
 
     print
     guesses = input("guess a character:")                     
-
-    if guesses not in word:  
+    guesses += guess 
+    
+    if guess not in word:  
         chances -= 1        
         print ("Wrong")
         print( "You have", + chances, 'more guesses' )
