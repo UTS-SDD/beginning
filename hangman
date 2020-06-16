@@ -1,3 +1,4 @@
+import playsound
 
 name = input("What is your name? ")
 print ("Hello," + name, "Time to play hangman!")
@@ -5,25 +6,33 @@ print ("Hello," + name, "Time to play hangman!")
 word = "example"
 guesses = ''
 chances = 5
+guess = ''
+wrong = 0
 
 while chances > 0:         
-    failed = 0             
+    failed = 0 
+    wrong = 0
     for char in word:      
         if char in guesses:    
-            print (char)    
+            print (char, end=' ')    
         else:
-            print ("_")
+            print ("_", end= ' ')
             failed += 1
     if failed == 0:        
         print ("You won")  
 
     print
-    guesses = input("guess a character:")                     
+    guess = input("guess a character:")
+    
     guesses += guess 
     
-    if guess not in word:  
-        chances -= 1        
-        print ("Wrong")
+    for char in guess:   
+        if char not in word: 
+            wrong += 1
+        
+    if wrong >0:
+        chances -= wrong 
+        print (wrong, "letter/s in your guess were wrong")
         print( "You have", + chances, 'more guesses' )
 
         if chances == 0:           
