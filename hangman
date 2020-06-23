@@ -1,6 +1,8 @@
 from Words import word_list#importing a list containing words
 import random#importing the random function
 
+import winsound
+
 name = input("What is your name? ")
 print ("Hello," + name, "Time to play hangman!")
 
@@ -20,7 +22,8 @@ while chances > 0:
             print ("_", end= ' ')
             failed += 1
     if failed == 0:        
-        print ("You won")  
+        print ("You won")
+        winsound.PlaySound("win", winsound.SND_FILENAME)
 
     print
     guess = input("guess a character:")
@@ -38,3 +41,4 @@ while chances > 0:
 
         if chances == 0:           
             print ("You Lose")
+            winsound.PlaySound("fail", winsound.SND_FILENAME)
