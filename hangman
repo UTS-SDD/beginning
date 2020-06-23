@@ -24,8 +24,7 @@ while chances > 0:
     if failed == 0:        
         print ("You won")
         winsound.PlaySound("win", winsound.SND_FILENAME)
-
-    print
+        
     guess = input("guess a character:")
     
     guesses += guess 
