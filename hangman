@@ -1,9 +1,10 @@
-import playsound
+from Words import word_list#importing a list containing words
+import random#importing the random function
 
 name = input("What is your name? ")
 print ("Hello," + name, "Time to play hangman!")
 
-word = "example"
+word = random.choice(word_list)
 guesses = ''
 chances = 5
 guess = ''
