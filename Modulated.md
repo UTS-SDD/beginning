@@ -1,0 +1,64 @@
+from Words import word_list#importing a list containing words
+import random#importing the random function
+import winsound
+
+name = input("What is your name? ")
+print("Hello,", name, "Time to play hangman!")
+
+def get_word():
+    word = random.choice(word_list)
+    return word
+
+def play(word):
+    guesses = ''
+    chances = 7
+    guess = ''
+    wrong = 0
+
+    while chances > 0:
+        print("     " + ("------" if chances < 7 else ""))
+        print("     |    " + ("|" if chances < 6 else ""))
+        print("     |    " + ("O" if chances < 5 else ""))
+        print("     |    " + ("/\\" if chances < 4 else ""))
+        print("     |    " + ("|" if chances < 3 else ""))
+        print("     |    " + ("/\\" if chances < 2 else ""))
+        print(" --------")
+        failed = 0
+        wrong = 0
+        for char in word:
+            if char in guesses:
+                print(char, end=' ')
+            else:
+                print("_", end=' ')
+                failed += 1
+        if failed == 0:
+            print("You won")
+            winsound.PlaySound("win", winsound.SND_FILENAME)
+
+        guess = input("guess a character:")
+        print()
+
+        guesses += guess
+
+        for char in guess:
+            if char not in word:
+                wrong += 1
+
+        if wrong > 0:
+            chances -= wrong
+            print(wrong, "letter/s in your guess were wrong")
+            print("You have", + chances, 'more guesses')
+            print()
+
+        if chances == 0:
+            print("You Lose, the word was:", word)
+            winsound.PlaySound("fail", winsound.SND_FILENAME)
+
+def main():
+    word = get_word()
+    play(word)
+    while input("Play Again? (Y/N) ").upper() == "Y":
+        word = get_word()
+        play(word)
+
+main()
