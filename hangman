@@ -6,13 +6,20 @@ import winsound
 name = input("What is your name? ")
 print ("Hello," + name, "Time to play hangman!")
 
-word = random.choice(word_list)
+word = "example"
 guesses = ''
-chances = 5
+chances = 7
 guess = ''
 wrong = 0
 
-while chances > 0:         
+while chances > 0:
+    print("     " + ("------" if chances < 7 else ""))
+    print("     |    " + ("|" if chances < 6 else ""))
+    print("     |    " + ("O" if chances < 5 else ""))
+    print("     |    " + ("/\\" if chances < 4 else ""))
+    print("     |    " + ("|" if chances < 3 else ""))
+    print("     |    " + ("/\\" if chances < 2 else ""))
+    print(" --------")
     failed = 0 
     wrong = 0
     for char in word:      
@@ -24,8 +31,9 @@ while chances > 0:
     if failed == 0:        
         print ("You won")
         winsound.PlaySound("win", winsound.SND_FILENAME)
-        
+
     guess = input("guess a character:")
+    print()
     
     guesses += guess 
     
@@ -35,9 +43,12 @@ while chances > 0:
         
     if wrong >0:
         chances -= wrong 
-        print (wrong, "letter/s in your guess were wrong")
+        print (wrong,"letter/s in your guess were wrong")
         print( "You have", + chances, 'more guesses' )
+        print()
 
-        if chances == 0:           
+    
+    if chances == 0:           
             print ("You Lose")
             winsound.PlaySound("fail", winsound.SND_FILENAME)
+
