@@ -34,6 +34,8 @@ while chances > 0:
 
     guess = input("guess a character:")
     print()
+    print()
+    print()
     
     guesses += guess 
     
